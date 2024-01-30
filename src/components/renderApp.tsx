@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect } from "react";
 
-import { aplicacion } from "@/app/page";
+import { aplicacion, aplicaciones } from "@/app/page";
 
 
-const RenderApp = (aplicaciones) => {
+const RenderApp = () => {
 
     useEffect(()=>{
         console.log('se re-renderizo')

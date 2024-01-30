@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <Suspense>
       <main className="relative">
-        <RenderApp aplicaciones={aplicaciones}/>
+        <RenderApp/>
         <div className="flex h-screen w-screen justify-center bg-[#070420] ">
           <img className="h-screen" src="/fondo.png"></img>
         </div>
