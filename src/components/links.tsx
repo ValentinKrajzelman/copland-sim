@@ -1,15 +1,11 @@
-import React, { FC } from "react";
+import React from "react";
 
-import { aplicacion, aplicaciones } from "@/app/page";
+import { aplicacion } from "@/app/page";
 
-interface props {
-  id: Number;
-}
 
 const Links = () => {
-  console.log(aplicaciones);
   console.log("llego");
-  return <div className="absolute h-24 w-24 bg-white">asdf</div>;
+  return <div className="absolute h-24 w-24 bg-white">touche</div>;
 };
 
 export default Links;

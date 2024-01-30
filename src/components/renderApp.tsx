@@ -1,10 +1,14 @@
 "use client";
 import React, { useEffect } from "react";
 
-import { aplicacion, aplicaciones } from "@/app/page";
+import { aplicacion } from "@/app/page";
 
+interface props {
+aplicaciones: aplicacion[],
+setAplicaciones: Function
+}
 
-const RenderApp = () => {
+const RenderApp = ({aplicaciones, setAplicaciones}:props) => {
 
     useEffect(()=>{
         console.log('se re-renderizo')
@@ -12,9 +16,9 @@ const RenderApp = () => {
   
     return (
     <div>
-      {aplicaciones.value && (
+      {aplicaciones && (
         <div>
-          {aplicaciones.value.map((app:aplicacion) => {
+          {aplicaciones.map((app:aplicacion) => {
             return <div>
                 {app.component}
             </div>;

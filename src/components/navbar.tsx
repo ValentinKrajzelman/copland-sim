@@ -1,13 +1,16 @@
-import React, { FC } from "react";
+import React from "react";
 import BotonNavbar from "./botonNavbar";
 
-import { Signal } from "@preact/signals-react";
+import { aplicacion } from "@/app/page";
 
 import Links from "./links";
 
-import { aplicaciones } from "@/app/page";
+interface props {
+  aplicaciones: aplicacion[],
+  setAplicaciones: Function
+  }
 
-const Navbar = () => {
+const Navbar = ({aplicaciones, setAplicaciones}:props) => {
 
   return (
     <div>
@@ -16,6 +19,8 @@ const Navbar = () => {
           nombre="Links"
           descripcion=" info -Dev-"
           links={<Links  />}
+          aplicaciones={aplicaciones} 
+          setAplicaciones={setAplicaciones}
         />
         {/* <BotonNavbar
           nombre="Help"
