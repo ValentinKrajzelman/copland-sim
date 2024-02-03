@@ -1,9 +1,8 @@
-'use client'
-import Image from "next/image";
+"use client";
 import Navbar from "@/components/navbar";
 
-import { FC, ReactNode, Suspense, useState } from "react";
-import RenderApp from "@/components/renderApp";
+import { ReactNode, Suspense, useEffect, useRef, useState } from "react";
+import DraggableApp from "@/components/draggableApp";
 
 export interface aplicacion {
   id: Number;
@@ -14,21 +13,34 @@ export interface aplicacion {
   component: ReactNode;
 }
 
-// export const aplicaciones: Signal<aplicacion[]> = signal([]);
+
+
 
 export default function Home() {
-
   const [aplicaciones, setAplicaciones] = useState<aplicacion[]>([]);
 
   return (
     <Suspense>
       <main className="relative">
-        <RenderApp aplicaciones={aplicaciones} setAplicaciones={setAplicaciones}/>
-        <div className="flex h-screen w-screen justify-center bg-[#070420] ">
-          <img className="h-screen" src="/fondo.png"></img>
-        </div>
-        <div className="absolute left-5 top-5">
-          <Navbar aplicaciones={aplicaciones} setAplicaciones={setAplicaciones}/>
+        <div>
+          {aplicaciones &&
+            aplicaciones.map((app: aplicacion) => {
+              return (
+                <DraggableApp
+                  aplicaciones={app}
+                  setAplicaciones={setAplicaciones}
+                />
+              );
+            })}
+          <div className="flex h-screen w-screen justify-center bg-[#070420] ">
+            <img className="h-screen" src="/fondo.png"></img>
+          </div>
+          <div className="absolute left-5 top-5">
+            <Navbar
+              aplicaciones={aplicaciones}
+              setAplicaciones={setAplicaciones}
+            />
+          </div>
         </div>
       </main>
     </Suspense>
