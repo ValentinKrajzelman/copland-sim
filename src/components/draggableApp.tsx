@@ -4,11 +4,13 @@ import React, { useEffect, useRef } from "react";
 import { aplicacion } from "@/app/page";
 
 interface props {
-  aplicaciones: aplicacion;
+  aplicaciones: aplicacion[];
+  aplicacionActual: aplicacion;
   setAplicaciones: Function;
+  index: number;
 }
 
-const DraggableApp = ({ aplicaciones, setAplicaciones }: props) => {
+const DraggableApp = ({ aplicacionActual, aplicaciones, setAplicaciones, index }: props) => {
   //con lo useRef devolvemos un objeto con el contenido de los elementos,
   //con la propiedad ref
   const box = useRef<HTMLDivElement>(null);
@@ -69,13 +71,20 @@ const DraggableApp = ({ aplicaciones, setAplicaciones }: props) => {
     return cleanup;
   }, []);
 
+  const minimizarApp = () =>{
+    const aux = aplicaciones;
+    aux[index] = {...aplicacionActual, minimized: true};
+    setAplicaciones(aux);
+    console.log(aplicaciones)
+  };
+
   return (
     <div>
       <div ref={box} className="absolute  border-2">
-        <div ref={bar} className="h-16 bg-blue-400">
-          asdf
+        <div ref={bar} className="h-6 bg-blue-400">
+            <button onClick={()=>{minimizarApp()}}>A</button>
         </div>
-        <div>{aplicaciones.component}</div>
+        <div>{aplicacionActual.component}</div>
       </div>
     </div>
   );

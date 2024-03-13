@@ -6,15 +6,11 @@ import DraggableApp from "@/components/draggableApp";
 
 export interface aplicacion {
   id: Number;
-  open: Boolean;
   minimized: Boolean;
   x: Number;
   y: Number;
   component: ReactNode;
 }
-
-
-
 
 export default function Home() {
   const [aplicaciones, setAplicaciones] = useState<aplicacion[]>([]);
@@ -24,13 +20,17 @@ export default function Home() {
       <main className="relative">
         <div>
           {aplicaciones &&
-            aplicaciones.map((app: aplicacion) => {
-              return (
-                <DraggableApp
-                  aplicaciones={app}
-                  setAplicaciones={setAplicaciones}
-                />
-              );
+            aplicaciones.map((app: aplicacion, index) => {
+              if (!app.minimized) {
+                return (
+                  <DraggableApp
+                    aplicaciones={aplicaciones}
+                    aplicacionActual={app}
+                    setAplicaciones={setAplicaciones}
+                    index={index}
+                  />
+                );
+              }
             })}
           <div className="flex h-screen w-screen justify-center bg-[#070420] ">
             <img className="h-screen" src="/fondo.png"></img>
